@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loan EMI Calculator — Professional Monthly Payment & Amortization Analyzer (Up to ₹10 Cr)</title>
+<meta name="description" content="Calculate loan EMIs up to ₹10 Crore with real-time interest breakdowns, interactive amortization schedule controls, side-by-side scenario comparisons, and prepayment impact tools.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <nav class="wrap">
+    <div class="logo">
+      <div class="logo-icon-bg">
+        <svg class="logo-mark" viewBox="0 0 28 28" fill="none" width="24" height="24">
+          <path d="M14 2L26 22H2Z" fill="url(#navGrad)"/>
+          <circle cx="14" cy="15" r="4" fill="#FFFFFF"/>
+          <defs>
+            <linearGradient id="navGrad" x1="2" y1="22" x2="26" y2="2">
+              <stop offset="0%" stop-color="#2563EB"/>
+              <stop offset="50%" stop-color="#7C3AED"/>
+              <stop offset="100%" stop-color="#059669"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <span class="logo-text">EMI<span class="logo-highlight">Smart</span></span>
+    </div>
+
+    <div class="nav-links">
+      <a href="#calculator">Calculator</a>
+      <a href="#what-is-emi">Basics</a>
+      <a href="#logic">Formula</a>
+      <a href="#breakdown">Amortization</a>
+      <a href="#tips">Prepayment</a>
+      <a href="#comparison" class="nav-badge-link">Compare Loans</a>
+      <a href="#faq">FAQs</a>
+      <a href="#calculator" class="nav-cta">Calculate EMI →</a>
+    </div>
+
+    <button class="burger" id="burger-btn" aria-label="Toggle Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- MOBILE DRAWER MENU -->
+<div class="mobile-drawer" id="mobile-drawer">
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+  <div class="drawer-content">
+    <div class="drawer-header">
+      <span class="logo-text">EMI<span class="logo-highlight">Smart</span></span>
+      <button class="drawer-close" id="drawer-close">&times;</button>
+    </div>
+    <div class="drawer-links">
+      <a href="#calculator" class="drawer-link">Calculator</a>
+      <a href="#what-is-emi" class="drawer-link">Basics</a>
+      <a href="#logic" class="drawer-link">Formula</a>
+      <a href="#breakdown" class="drawer-link">Amortization</a>
+      <a href="#tips" class="drawer-link">Prepayment</a>
+      <a href="#comparison" class="drawer-link">Compare Loans</a>
+      <a href="#faq" class="drawer-link">FAQs</a>
+      <a href="#calculator" class="btn btn-primary drawer-btn">Calculate EMI Now</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-text-col">
+      <div class="eyebrow"><span class="pulse-dot"></span> Supporting Loans Up to ₹10 Crore</div>
+      <h1>Know your exact monthly EMI <span class="spectrum">before you borrow.</span></h1>
+      <p class="lede">Calculate payments for home loans, luxury real estate, commercial property, auto, and business loans up to <strong>₹10 Crore</strong>. Get instant amortization schedules, side-by-side comparisons, and prepayment insights.</p>
+      
+      <div class="hero-ctas">
+        <a href="#calculator" class="btn btn-primary btn-glow">Calculate My EMI →</a>
+        <a href="#breakdown" class="btn btn-secondary">Explore Amortization</a>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-icon">₹</div>
+          <div>
+            <b>Up to ₹10 Cr</b>
+            <span>High-value loan support</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⏱</div>
+          <div>
+            <b>30 Years</b>
+            <span>Full tenure calculations</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⚡</div>
+          <div>
+            <b>Live Schedule Controls</b>
+            <span>Custom amortization table</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prism-stage">
+      <div class="hero-card-floating">
+        <div class="hero-badge">Executive Financial Math</div>
+        <svg class="prism-svg" viewBox="0 0 440 360" fill="none">
+          <defs>
+            <linearGradient id="beam1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#2563EB"/><stop offset="100%" stop-color="#38BDF8"/></linearGradient>
+            <linearGradient id="beam2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#EC4899"/></linearGradient>
+            <linearGradient id="beam3" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#059669"/><stop offset="100%" stop-color="#10B981"/></linearGradient>
+          </defs>
+
+          <!-- Input Beam -->
+          <line x1="20" y1="180" x2="160" y2="180" stroke="url(#beam1)" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="160" cy="180" r="5" fill="#2563EB" />
+
+          <!-- Central Prism -->
+          <polygon points="160,100 270,180 160,260" fill="rgba(255, 255, 255, 0.9)" stroke="#cbd5e1" stroke-width="2.5"/>
+          <polygon points="160,100 270,180 160,260" fill="url(#navGrad)" opacity="0.12"/>
+
+          <!-- Refracted Beams -->
+          <g stroke-linecap="round" stroke-width="4.5">
+            <line x1="210" y1="180" x2="420" y2="50" stroke="#2563EB"><animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite"/></line>
+            <line x1="210" y1="180" x2="425" y2="115" stroke="#D97706"><animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" begin="0.3s" repeatCount="indefinite"/></line>
+            <line x1="210" y1="180" x2="428" y2="180" stroke="#059669"><animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" begin="0.6s" repeatCount="indefinite"/></line>
+            <line x1="210" y1="180" x2="425" y2="245" stroke="#7C3AED"><animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" begin="0.9s" repeatCount="indefinite"/></line>
+            <line x1="210" y1="180" x2="420" y2="310" stroke="#E11D48"><animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" begin="1.2s" repeatCount="indefinite"/></line>
+          </g>
+
+          <text x="25" y="165" font-family="JetBrains Mono" font-size="11" font-weight="700" fill="#475569">LOAN (UP TO ₹10 CR)</text>
+          <text x="320" y="45" font-family="JetBrains Mono" font-size="11" font-weight="700" fill="#2563EB">MONTHLY EMI</text>
+          <text x="320" y="110" font-family="JetBrains Mono" font-size="11" font-weight="700" fill="#D97706">INTEREST</text>
+          <text x="320" y="175" font-family="JetBrains Mono" font-size="11" font-weight="700" fill="#059669">PRINCIPAL</text>
+          <text x="320" y="240" font-family="JetBrains Mono" font-size="11" font-weight="700" fill="#7C3AED">TENURE</text>
+          <text x="320" y="305" font-family="JetBrains Mono" font-size="11" font-weight="700" fill="#E11D48">PREPAYMENT</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CALCULATOR INSTRUMENT -->
+<section class="section" id="calculator">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="pulse-dot" style="background:var(--c4)"></span> Interactive Instrument</div>
+      <h2>Calculate your EMI up to ₹10 Crore</h2>
+      <p>Select a quick preset or adjust sliders and typed inputs. Supports loan values from ₹1 Lakh to ₹10 Crore with instant zero-shift results.</p>
+    </div>
+
+    <!-- Loan Type Presets -->
+    <div class="loan-presets reveal">
+      <span class="preset-label">Quick Presets:</span>
+      <div class="preset-buttons">
+        <button class="preset-btn active" data-amount="50000000" data-tenure="20" data-rate="8.5">
+          <span class="preset-icon">🏠</span> Luxury Home (₹5 Cr @ 8.5%)
+        </button>
+        <button class="preset-btn" data-amount="20000000" data-tenure="15" data-rate="9.5">
+          <span class="preset-icon">🏢</span> Commercial Property (₹2 Cr @ 9.5%)
+        </button>
+        <button class="preset-btn" data-amount="5000000" data-tenure="20" data-rate="8.5">
+          <span class="preset-icon">🏡</span> Home Loan (₹50 Lakhs @ 8.5%)
+        </button>
+        <button class="preset-btn" data-amount="1500000" data-tenure="5" data-rate="9.2">
+          <span class="preset-icon">🚗</span> Car Loan (₹15 Lakhs @ 9.2%)
+        </button>
+        <button class="preset-btn" data-amount="100000000" data-tenure="25" data-rate="8.8">
+          <span class="preset-icon">👑</span> ₹10 Crore Loan (8.8%)
+        </button>
+      </div>
+    </div>
+
+    <div class="calc-panel reveal">
+      <!-- Input Controls Column -->
+      <div class="calc-inputs">
+        <div class="field">
+          <div class="field-top">
+            <label for="amount">Loan Amount (Up to ₹10 Cr)</label>
+            <div class="output-box output-c1">
+              <span class="currency-symbol">₹</span>
+              <input type="text" id="amount-text" value="50,00,000" class="numeric-input" />
+            </div>
+          </div>
+          <input type="range" id="amount" min="100000" max="100000000" step="100000" value="5000000">
+          <div class="field-range"><span>₹1 Lakh</span><span>₹1 Crore</span><span>₹5 Crores</span><span>₹10 Crores</span></div>
+        </div>
+
+        <div class="field">
+          <div class="field-top">
+            <label for="tenure">Tenure (Years)</label>
+            <div class="output-box output-c4">
+              <input type="number" id="tenure-text" value="20" min="1" max="30" class="numeric-input short-input" />
+              <span class="unit-symbol">Years</span>
+            </div>
+          </div>
+          <input type="range" id="tenure" min="1" max="30" step="1" value="20">
+          <div class="field-range"><span>1 Year</span><span>15 Years</span><span>30 Years</span></div>
+        </div>
+
+        <div class="field">
+          <div class="field-top">
+            <label for="rate">Interest Rate (% p.a.)</label>
+            <div class="output-box output-c5">
+              <input type="number" id="rate-text" value="8.50" min="1" max="25" step="0.05" class="numeric-input short-input" />
+              <span class="unit-symbol">%</span>
+            </div>
+          </div>
+          <input type="range" id="rate" min="5" max="20" step="0.05" value="8.5">
+          <div class="field-range"><span>5%</span><span>12.5%</span><span>20%</span></div>
+        </div>
+      </div>
+
+      <!-- Results Column -->
+      <div class="calc-results">
+        <div class="results-header">
+          <div class="emi-label">Your Monthly EMI</div>
+          <div class="emi-figure mono" id="emi-value">₹43,391 /mo</div>
+        </div>
+
+        <!-- Donut & Distribution Bar -->
+        <div class="visual-breakdown">
+          <div class="donut-wrap">
+            <svg class="donut-svg" viewBox="0 0 100 100">
+              <circle class="donut-bg" cx="50" cy="50" r="38" stroke="rgba(255,255,255,0.12)" stroke-width="14" fill="none"/>
+              <circle id="donut-principal" class="donut-segment segment-principal" cx="50" cy="50" r="38" stroke="var(--c4)" stroke-width="14" fill="none" stroke-dasharray="238.7" stroke-dashoffset="95"/>
+              <circle id="donut-interest" class="donut-segment segment-interest" cx="50" cy="50" r="38" stroke="var(--c1)" stroke-width="14" fill="none" stroke-dasharray="238.7" stroke-dashoffset="238.7"/>
+            </svg>
+            <div class="donut-center">
+              <span class="donut-pct" id="donut-principal-pct">48%</span>
+              <span class="donut-sub">Principal</span>
+            </div>
+          </div>
+
+          <div class="breakdown-details">
+            <div class="breakdown-bar">
+              <div class="bb-principal" id="bb-principal" style="width:48%"></div>
+              <div class="bb-interest" id="bb-interest" style="width:52%"></div>
+            </div>
+            <div class="breakdown-legend">
+              <div class="leg-item"><span class="leg-dot" style="background:var(--c4)"></span> Principal: <strong id="leg-p-pct">48%</strong></div>
+              <div class="leg-item"><span class="leg-dot" style="background:var(--c1)"></span> Total Interest: <strong id="leg-i-pct">52%</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-grid">
+          <div class="result-card">
+            <span>Principal Amount</span>
+            <b id="principal-value" class="mono">₹50,00,000</b>
+          </div>
+          <div class="result-card">
+            <span>Total Interest Payable</span>
+            <b id="interest-value" class="mono">₹54,14,156</b>
+          </div>
+          <div class="result-card card-full">
+            <span>Total Amount Payable (Principal + Interest)</span>
+            <b id="total-value" class="mono highlight-payable">₹1,04,14,156</b>
+          </div>
+        </div>
+
+        <div class="calc-actions">
+          <button class="btn-action" id="copy-summary-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Summary
+          </button>
+          <a href="#breakdown" class="btn-action">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            View Schedule
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 1. WHAT IS AN EMI -->
+<section class="section alt" id="what-is-emi">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="pulse-dot" style="background:var(--c1)"></span> Part 1 · Fundamentals</div>
+      <h2>What exactly is an EMI?</h2>
+      <p>EMI stands for Equated Monthly Installment — a fixed monthly payment that repays both principal and interest over a chosen term.</p>
+    </div>
+
+    <div class="split-panel reveal">
+      <div class="split-info">
+        <div class="concept-badge"><span class="badge-dot"></span> The Two Components</div>
+        <h3 class="split-title">Every EMI payment combines two distinct portions</h3>
+        
+        <div class="part-card part-principal">
+          <div class="part-icon" style="background:var(--c4-soft); color:var(--c4)">P</div>
+          <div>
+            <h4>Principal Portion</h4>
+            <p>Directly reduces the original amount borrowed from the bank.</p>
+          </div>
+        </div>
+
+        <div class="part-card part-interest">
+          <div class="part-icon" style="background:var(--c1-soft); color:var(--c1)">I</div>
+          <div>
+            <h4>Interest Portion</h4>
+            <p>Pays the lender for borrowing capital based on your rate.</p>
+          </div>
+        </div>
+
+        <p class="split-note">Early EMIs are interest-heavy, while late EMIs are principal-heavy.</p>
+      </div>
+
+      <div class="split-visual-card">
+        <h4 class="visual-card-title">Active Calculator Breakdown</h4>
+        <div class="split-row">
+          <div class="split-meta">
+            <span>Principal Contribution</span>
+            <strong id="split-principal-val" class="mono">₹50,00,000</strong>
+          </div>
+          <div class="split-track">
+            <div class="split-fill" id="split-principal-fill" style="width:48%; background:var(--c4);"></div>
+          </div>
+          <span class="mono split-pct-badge" id="split-principal-pct">48%</span>
+        </div>
+
+        <div class="split-row">
+          <div class="split-meta">
+            <span>Interest Contribution</span>
+            <strong id="split-interest-val" class="mono">₹54,14,156</strong>
+          </div>
+          <div class="split-track">
+            <div class="split-fill" id="split-interest-fill" style="width:52%; background:var(--c1);"></div>
+          </div>
+          <span class="mono split-pct-badge" id="split-interest-pct" style="background:var(--c1-soft); color:var(--c1)">52%</span>
+        </div>
+
+        <div class="split-footer-stat">
+          <div class="s-box">
+            <span class="s-label">Loan Term</span>
+            <span class="s-val" id="split-tenure-display">20 Years</span>
+          </div>
+          <div class="s-box">
+            <span class="s-label">Total Installments</span>
+            <span class="s-val" id="split-months-display">240 Payments</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. FORMULA -->
+<section class="section" id="logic">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="pulse-dot" style="background:var(--c2)"></span> Part 2 · Formula Logic</div>
+      <h2>How reducing-balance EMI is calculated</h2>
+      <p>Standard Reducing Balance Formula used by major banks globally.</p>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card reveal">
+        <div class="info-icon" style="background:linear-gradient(135deg, #2563EB, #38BDF8)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+        </div>
+        <h3>1. Monthly Rate (R)</h3>
+        <p>Annual interest rate divided by 12 months: <br><code>R = Rate ÷ 12 ÷ 100</code></p>
+      </div>
+
+      <div class="info-card reveal">
+        <div class="info-icon" style="background:linear-gradient(135deg, #7C3AED, #EC4899)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/></svg>
+        </div>
+        <h3>2. Total Months (N)</h3>
+        <p>Tenure in years converted into total installments: <br><code>N = Tenure in Years × 12</code></p>
+      </div>
+
+      <div class="info-card reveal">
+        <div class="info-icon" style="background:linear-gradient(135deg, #059669, #10B981)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M4 19V5M4 19h16M9 15l3-4 3 3 4-6"/></svg>
+        </div>
+        <h3>3. Reducing Balance</h3>
+        <p>Interest is calculated only on the remaining unpaid principal at the start of each month.</p>
+      </div>
+    </div>
+
+    <div class="formula-box reveal">
+      <div class="formula-title">Mathematical Formula:</div>
+      <div class="f">EMI = P × R × <span class="f-num">(1+R)<sup>N</sup></span> / [<span class="f-den">(1+R)<sup>N</sup> − 1</span>]</div>
+      <p>Where <strong>P</strong> = Principal (up to ₹10 Cr), <strong>R</strong> = Monthly Rate, and <strong>N</strong> = Tenure Months.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. THREE LEVERS -->
+<section class="section alt" id="factors">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="pulse-dot" style="background:var(--c3)"></span> Part 3 · Key Variables</div>
+      <h2>Three levers that control your EMI</h2>
+      <p>Every EMI payment is determined by three controllable parameters.</p>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card leverage-card reveal">
+        <div class="info-icon" style="background:var(--c1)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3>Loan Principal (Up to ₹10 Cr)</h3>
+        <p>The total capital borrowed. Increasing principal increases EMI proportionally. A higher down payment reduces required principal.</p>
+        <div class="card-tag tag-c1">Direct Scaling</div>
+      </div>
+
+      <div class="info-card leverage-card reveal">
+        <div class="info-icon" style="background:var(--c4)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        </div>
+        <h3>Tenure (N)</h3>
+        <p>The loan term in years. Longer tenure lowers monthly EMI burden but increases total accumulated interest paid to the lender.</p>
+        <div class="card-tag tag-c4">Trade-off Factor</div>
+      </div>
+
+      <div class="info-card leverage-card reveal">
+        <div class="info-icon" style="background:var(--c5)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M3 17l6-6 4 4 8-8M21 7v6M21 7h-6"/></svg>
+        </div>
+        <h3>Interest Rate (R)</h3>
+        <p>The rate charged by the bank. Even a 0.5% rate reduction saves lakhs on long-term loans.</p>
+        <div class="card-tag tag-c5">High Impact</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AMORTIZATION SCHEDULE (WITH DEDICATED CONTROLS) ===================== -->
+<section class="section" id="breakdown">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="pulse-dot" style="background:var(--c6)"></span> Year-by-Year Repayment</div>
+      <h2>Interactive Amortization Schedule & Controls</h2>
+      <p>Adjust the principal, tenure, and interest rate using the schedule controls below to instantly see how the year-by-year repayment table and visual breakdown change!</p>
+    </div>
+
+    <!-- DEDICATED SCHEDULE CONTROLS CARD -->
+    <div class="part4-controls-card reveal">
+      <div class="p4-head">
+        <h3>⚡ Schedule Explorer & Controls</h3>
+        <span class="p4-sub">Test custom repayment schedules for loan amounts up to ₹10 Crore</span>
+      </div>
+
+      <div class="p4-inputs-grid">
+        <div class="p4-field">
+          <label for="p4-amount">Schedule Principal Amount (₹)</label>
+          <input type="number" id="p4-amount" value="5000000" step="500000" min="100000" max="100000000" class="p4-input" />
+        </div>
+        <div class="p4-field">
+          <label for="p4-tenure">Repayment Tenure (Years)</label>
+          <input type="number" id="p4-tenure" value="20" min="1" max="30" class="p4-input" />
+        </div>
+        <div class="p4-field">
+          <label for="p4-rate">Interest Rate (% p.a.)</label>
+          <input type="number" id="p4-rate" value="8.5" step="0.1" min="1" max="25" class="p4-input" />
+        </div>
+        <div class="p4-field p4-action-cell">
+          <button class="btn btn-secondary btn-sm" id="p4-sync-main-btn">Sync with Main Calculator</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISUAL AMORTIZATION STACKED BAR -->
+    <div class="amort-visual-card reveal">
+      <div class="vcard-head">
+        <h4>Yearly Principal vs Interest Progress Bar</h4>
+        <span class="vcard-desc">Visual timeline showing how interest shrinks and principal grows year by year</span>
+      </div>
+      <div class="amort-visual-bars" id="amort-visual-bars"></div>
+    </div>
+
+    <div class="amort-controls reveal">
+      <div class="amort-summary-strip">
+        <span>Schedule Principal: <strong id="amort-summary-loan">₹50,00,000</strong></span>
+        <span>Tenure: <strong id="amort-summary-tenure">20 Years</strong></span>
+        <span>Rate: <strong id="amort-summary-rate">8.50%</strong></span>
+        <span>Monthly EMI: <strong id="amort-summary-emi" class="mono" style="color:var(--c4)">₹43,391</strong></span>
+      </div>
+      <button class="btn btn-secondary btn-sm" id="print-schedule-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print / Save Schedule
+      </button>
+    </div>
+
+    <div class="amort-wrap reveal">
+      <div class="amort-scroll">
+        <table class="amort">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Principal Paid (Yearly)</th>
+              <th>Interest Paid (Yearly)</th>
+              <th>Total Paid (Yearly)</th>
+              <th>Remaining Balance</th>
+            </tr>
+          </thead>
+          <tbody id="amort-body"></tbody>
+        </table>
+      </div>
+      <p class="amort-note">💡 Notice how interest payments start high in Year 1 and decrease annually as remaining balance winds down.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. TIPS & PREPAYMENT SIMULATOR -->
+<section class="section alt" id="tips">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="pulse-dot" style="background:var(--c2)"></span> Part 5 · Smart Strategies</div>
+      <h2>6 Proven ways to lower your EMI & total cost</h2>
+      <p>Strategic ways to save thousands or lakhs in borrowing costs over your loan tenure.</p>
+    </div>
+
+    <!-- PREPAYMENT SIMULATOR CARD -->
+    <div class="prepay-simulator reveal">
+      <div class="prep-header">
+        <div class="prep-icon">🚀</div>
+        <div>
+          <h3>Interactive Prepayment Savings Simulator</h3>
+          <p>See how making an extra annual lump-sum prepayment cuts years off your loan!</p>
+        </div>
+      </div>
+
+      <div class="prep-controls">
+        <div class="prep-field">
+          <label for="prep-annual">Annual Extra Prepayment (₹)</label>
+          <input type="number" id="prep-annual" value="50000" step="10000" min="5000" class="prep-input" />
+        </div>
+        <div class="prep-result-box">
+          <div class="prep-res-item">
+            <span>Tenure Reduced By</span>
+            <strong id="prep-years-saved" class="mono text-green">3.8 Years</strong>
+          </div>
+          <div class="prep-res-item">
+            <span>Total Interest Saved</span>
+            <strong id="prep-interest-saved" class="mono text-green">₹8,42,150</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tips-grid">
+      <div class="tip-card reveal">
+        <div class="tip-num" style="background:var(--c1)">1</div>
+        <div>
+          <h3>Make a larger down payment</h3>
+          <p>Increasing your initial down payment lowers total principal required, reducing EMI and lifetime interest instantly.</p>
+        </div>
+      </div>
+
+      <div class="tip-card reveal">
+        <div class="tip-num" style="background:var(--c2)">2</div>
+        <div>
+          <h3>Make periodic prepayments</h3>
+          <p>Paying an extra 1 EMI per year or partial lump sum directly cuts outstanding principal balance.</p>
+        </div>
+      </div>
+
+      <div class="tip-card reveal">
+        <div class="tip-num" style="background:var(--c3)">3</div>
+        <div>
+          <h3>Compare lender interest rates</h3>
+          <p>Shopping across multiple lenders can lock in a lower interest rate, saving substantial money overall.</p>
+        </div>
+      </div>
+
+      <div class="tip-card reveal">
+        <div class="tip-num" style="background:var(--c4)">4</div>
+        <div>
+          <h3>Maintain a high credit score (750+)</h3>
+          <p>Borrowers with excellent credit scores qualify for premier low-interest loan tiers and waived fees.</p>
+        </div>
+      </div>
+
+      <div class="tip-card reveal">
+        <div class="tip-num" style="background:var(--c5)">5</div>
+        <div>
+          <h3>Choose tenure deliberately</h3>
+          <p>Opt for the shortest tenure your monthly cash flow can comfortably support to avoid paying extra interest.</p>
+        </div>
+      </div>
+
+      <div class="tip-card reveal">
+        <div class="tip-num" style="background:var(--c6)">6</div>
+        <div>
+          <h3>Refinance / Loan Balance Transfer</h3>
+          <p>If market rates drop significantly, transfer your remaining loan to a lender offering lower rates.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. LOAN COMPARISON MATRIX (DIRECTLY ABOVE FAQ) -->
+<section class="section section-comparison" id="comparison">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="pulse-dot" style="background:var(--c5)"></span> Part 6 · Scenario Matrix</div>
+      <h2>Side-by-Side Loan Scenario Comparison</h2>
+      <p>Compare two loan offers or different tenure options side-by-side to discover which loan saves you the most money.</p>
+    </div>
+
+    <div class="comp-matrix reveal">
+      <!-- Scenario A Card -->
+      <div class="comp-card scenario-a">
+        <div class="comp-card-header">
+          <span class="comp-badge badge-a">Option A</span>
+          <h3>Standard Loan</h3>
+        </div>
+        <div class="comp-inputs">
+          <div class="comp-field">
+            <label>Amount (₹)</label>
+            <input type="number" id="comp-a-amount" value="10000000" step="500000" class="comp-input" />
+          </div>
+          <div class="comp-field">
+            <label>Tenure (Years)</label>
+            <input type="number" id="comp-a-tenure" value="20" min="1" max="30" class="comp-input" />
+          </div>
+          <div class="comp-field">
+            <label>Interest Rate (%)</label>
+            <input type="number" id="comp-a-rate" value="9.0" step="0.1" class="comp-input" />
+          </div>
+        </div>
+        <div class="comp-results">
+          <div class="comp-res-row">
+            <span>Monthly EMI</span>
+            <strong id="comp-a-emi" class="mono">₹89,973</strong>
+          </div>
+          <div class="comp-res-row">
+            <span>Total Interest</span>
+            <strong id="comp-a-interest" class="mono">₹1,15,93,470</strong>
+          </div>
+          <div class="comp-res-row comp-total">
+            <span>Total Payable</span>
+            <strong id="comp-a-total" class="mono">₹2,15,93,470</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- VS Separator Badge -->
+      <div class="comp-vs-badge">
+        <span>VS</span>
+      </div>
+
+      <!-- Scenario B Card -->
+      <div class="comp-card scenario-b">
+        <div class="comp-card-header">
+          <span class="comp-badge badge-b">Option B</span>
+          <h3>Optimized Loan</h3>
+        </div>
+        <div class="comp-inputs">
+          <div class="comp-field">
+            <label>Amount (₹)</label>
+            <input type="number" id="comp-b-amount" value="10000000" step="500000" class="comp-input" />
+          </div>
+          <div class="comp-field">
+            <label>Tenure (Years)</label>
+            <input type="number" id="comp-b-tenure" value="15" min="1" max="30" class="comp-input" />
+          </div>
+          <div class="comp-field">
+            <label>Interest Rate (%)</label>
+            <input type="number" id="comp-b-rate" value="8.5" step="0.1" class="comp-input" />
+          </div>
+        </div>
+        <div class="comp-results">
+          <div class="comp-res-row">
+            <span>Monthly EMI</span>
+            <strong id="comp-b-emi" class="mono">₹98,474</strong>
+          </div>
+          <div class="comp-res-row">
+            <span>Total Interest</span>
+            <strong id="comp-b-interest" class="mono">₹77,25,270</strong>
+          </div>
+          <div class="comp-res-row comp-total">
+            <span>Total Payable</span>
+            <strong id="comp-b-total" class="mono">₹1,77,25,270</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Savings Analysis Banner -->
+    <div class="savings-banner reveal" id="savings-banner">
+      <div class="savings-icon">🎉</div>
+      <div class="savings-content">
+        <h4>Option B saves you <span id="savings-amount" class="savings-highlight">₹38,68,200</span> in total payout!</h4>
+        <p id="savings-desc">By choosing 15 years @ 8.50% instead of 20 years @ 9.00%, you pay ₹8,501/mo more, but save <strong>₹38.68 Lakhs</strong> in total interest.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. FAQ -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="pulse-dot" style="background:var(--c5)"></span> Part 7 · Knowledge Base</div>
+      <h2>Frequently Asked Questions</h2>
+      <p>Clear answers to common questions about EMI calculation, interest rates, and loan repayments.</p>
+    </div>
+
+    <div class="faq-list reveal">
+      <details class="faq-item" open>
+        <summary>
+          <span>Can this calculator handle large loans up to ₹10 Crore?</span>
+          <span class="faq-plus"></span>
+        </summary>
+        <div class="faq-answer">
+          Yes. The calculator math engine is designed to scale up to ₹10 Crore (`₹10,00,00,000`) for commercial real estate, luxury housing, and corporate borrowing with full precision.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span>How do the live Amortization Schedule controls work?</span>
+          <span class="faq-plus"></span>
+        </summary>
+        <div class="faq-answer">
+          The Amortization section includes dedicated input boxes for Loan Amount, Tenure, and Rate. Adjusting them immediately recalculates the year-by-year amortization schedule table and visual timeline below it.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span>Why does total interest increase when loan tenure is longer?</span>
+          <span class="faq-plus"></span>
+        </summary>
+        <div class="faq-answer">
+          A longer tenure spreads principal repayment over more months, which reduces your monthly EMI amount. However, because interest is accrued every month on the outstanding principal, extending the tenure means paying interest for a longer time, resulting in significantly higher total interest paid.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span>How does prepayment affect my EMI or tenure?</span>
+          <span class="faq-plus"></span>
+        </summary>
+        <div class="faq-answer">
+          Making partial prepayments directly reduces your outstanding loan principal. You can test your prepayments in Part 5 using the Prepayment Simulator to see exact tenure years saved.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span>Is this financial advice?</span>
+          <span class="faq-plus"></span>
+        </summary>
+        <div class="faq-answer">
+          No. This web tool is an educational math simulator to help you plan and analyze loan choices. Always confirm exact interest rates, fees, and official amortization schedules directly with your chosen lending bank before signing agreement documents.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="section">
+  <div class="wrap">
+    <div class="cta-block reveal">
+      <div class="cta-glow"></div>
+      <h2>Make confident, informed loan decisions today.</h2>
+      <p>Test different loan amounts up to ₹10 Crore and interest rates to find the perfect monthly EMI that fits your budget.</p>
+      <a href="#calculator" class="btn btn-primary btn-glow">Start EMI Calculator →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-logo">
+        <div class="logo-icon-bg">
+          <svg class="logo-mark" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L26 22H2Z" fill="url(#footGrad)"/>
+            <circle cx="14" cy="15" r="4" fill="#FFFFFF"/>
+            <defs>
+              <linearGradient id="footGrad" x1="2" y1="22" x2="26" y2="2">
+                <stop offset="0%" stop-color="#2563EB"/>
+                <stop offset="50%" stop-color="#7C3AED"/>
+                <stop offset="100%" stop-color="#059669"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">EMI<span class="logo-highlight">Smart</span></span>
+      </div>
+      <div class="foot-links">
+        <a href="#calculator">Calculator</a>
+        <a href="#what-is-emi">Basics</a>
+        <a href="#logic">Formula</a>
+        <a href="#breakdown">Amortization</a>
+        <a href="#tips">Tips</a>
+        <a href="#comparison">Compare Loans</a>
+        <a href="#faq">FAQs</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>*Educational loan math calculator tool up to ₹10 Crore. All figures illustrative.</span>
+      <span>© 2026 EMISmart. Designed for bright financial decision-making.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
